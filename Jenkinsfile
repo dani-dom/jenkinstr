@@ -1,12 +1,22 @@
 pipeline {
     agent any 
+    enviroment {
+        NEW_VERSION = '1.3.0'
+        SERVER_CREDENTIALS = credentials('test-cred')
+    }
     stages {
         stage("Build") {
             steps {
                 echo 'building the app'
+                echo "building version ${NEW_VERSION}"
             }
         }
         stage ("Test") {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 echo 'testing the app'
             }
@@ -14,6 +24,10 @@ pipeline {
         stage ("deploy") {
             steps {
                 echo 'deploying the app'
+                withCredentials ([
+                    usernamePassword(credentials: 'test-cred', usernameVariable: USER, passwordVariable: PWD)
+                ]) {
+                    sh "some script ${USER} ${PWD}"
             }
 
         }
