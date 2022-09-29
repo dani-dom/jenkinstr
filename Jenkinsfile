@@ -2,7 +2,7 @@ def gv
 pipeline {
     agent any 
     parameters {
-        choice(name: 'VERSION', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
+        choice(name: 'GAME', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
         string(name: 'SIGN', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
         booleanParam(name: 'CAKE', defaultValue: false, description: 'Would you like to include a tres leches cake?')
     }
@@ -16,13 +16,16 @@ pipeline {
                 script {
                     gv=load "script.groovy"
                 }
+                withCredentials([
+                    usernamePassword(credentialsId: 'test-cred', usernameVariable: 'PW1', passwordVariable: 'PW2')]) {
+                    echo "My password is ${PW1} and ${PW2}!"
             }
 
         }
         stage("Build") {
             when {
                 expression {
-                    params.SIGN == 'Hailey'
+                    params.SIGN == ${PW1}
                 }
             }
             steps {
@@ -58,10 +61,6 @@ pipeline {
 
                 }
                 echo 'deploying the app'
-                withCredentials([
-                    usernamePassword(credentialsId: 'test-cred', usernameVariable: 'PW1', passwordVariable: 'PW2')]) {
-                    echo "My password is ${PW1} and ${PW2}!"
-    
 }
             }
 
