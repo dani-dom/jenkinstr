@@ -44,9 +44,9 @@ pipeline {
         }
         stage ("Testing the box toughness") {
             when {
-                expression {
-                    params.SENDER == 'Hailey'
-                }
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
             }
             steps {
                 script{
@@ -57,9 +57,9 @@ pipeline {
         }
         stage ("Deploy gift") {
             when {
-                expression {
-                    params.SENDER == 'Hailey'
-                }
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
             }
             steps {
                 script{
