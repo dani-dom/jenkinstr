@@ -15,7 +15,7 @@ pipeline {
 
     stages {
         
-        stage ("init") {
+        stage ("Checking credentials for gifts") {
             steps {
                 script {
                     gv=load "script.groovy"
@@ -28,7 +28,7 @@ pipeline {
             }
 
         }
-        stage("Build") {
+        stage("Building the present") {
                 when {
             expression {
                 params.SENDER == 'Hailey'
@@ -70,7 +70,7 @@ pipeline {
                 }
                 echo "The videogame ${Game} has been deployed to Daniel with the following note:"
                 echo "Note: ${Message}"
-                if (params.YES == True ) {
+                if (params.YES) {
                     echo 'and tysm for the cake :)'
 
                 } else {
