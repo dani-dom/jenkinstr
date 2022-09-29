@@ -54,13 +54,7 @@ pipeline {
                 script{
                     gv.TestApp()
                     echo "From 1 to 10, the toughness is: ${env.random_num}"
-                    if (env.random_num > 5) {
-                        echo 'yeah, it will survive the trip from USA to Mex'
-                    } else {
-                        'maybe the gift its gonna fall apart, not tough enough ):'
-                    }
-                    
-
+                    echo 'yeah, it seems like it can survive the trip'
                 }
                 echo 'testing the app'
             }
