@@ -20,6 +20,11 @@ pipeline {
 
         }
         stage("Build") {
+            when {
+                expression {
+                    params.SIGN == 'Hailey'
+                }
+            }
             steps {
                 script{
                     gv.BuildApp()
