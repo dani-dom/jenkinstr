@@ -1,7 +1,8 @@
 pipeline {
     agent any 
     parameters {
-        string(name: 'VERSION', defaultValue: '', description: 'version to depploy')
+        choice(name: 'VERSION', choices: ['1', '2'], description: '')
+        string(name: 'VERSION1', defaultValue: '', description: 'version to depploy')
     }
     environment {
         NEW_VERSION = '1.3.0'
@@ -17,7 +18,7 @@ pipeline {
         stage ("Test") {
             when {
                 expression {
-                    BRANCH_NAME == 'main'
+                    params.VERSION == '1'
                 }
             }
             steps {
