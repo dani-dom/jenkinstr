@@ -44,10 +44,10 @@ pipeline {
         }
         stage ("Testing the box toughness") {
             when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
+            expression {
+                params.SENDER == 'Hailey'
             }
+        }
             steps {
                 script{
                     gv.TestApp()
@@ -57,10 +57,10 @@ pipeline {
         }
         stage ("Deploy gift") {
             when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
+            expression {
+                params.SENDER == 'Hailey'
             }
+        }
             steps {
                 script{
                     gv.DepApp()
