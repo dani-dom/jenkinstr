@@ -2,8 +2,9 @@ def groovy
 pipeline {
     agent any 
     parameters {
-        choice(name: 'VERSION', choices: ['1', '2'], description: '')
-        string(name: 'VERSION1', defaultValue: '', description: 'version to depploy')
+        choice(name: 'VERSION', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
+        string(name: 'SIGN', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
+        booleanParam(name: 'CAKE', defaultValue: false, description: 'Would you like to include a tres leches cake?')
     }
     environment {
         NEW_VERSION = '1.3.0'
@@ -22,11 +23,7 @@ pipeline {
             steps {
                 script{
                     gv.BuildApp()
-                    echo $CI_COMMIT_SHORT_SHA
-                    npm install
-                    npm install -g gatsby-cli 
-                    gatsby build 
-                    sed -i "s" s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/" ./public/index.html
+
 
                 }
 
@@ -56,6 +53,10 @@ pipeline {
 
                 }
                 echo 'deploying the app'
+                withCredentials([string(credentialsId: 'test-cred', variable: 'PW1')]) {
+                    echo "My password is '${PW1}'!"
+    
+}
             }
 
         }
