@@ -27,7 +27,7 @@ pipeline {
         stage("Build") {
             when {
                 expression {
-                    params.SIGN == PW1
+                    params.SIGN == 'PW1'
                 }
             }
             steps {
