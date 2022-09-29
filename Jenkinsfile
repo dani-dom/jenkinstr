@@ -81,4 +81,16 @@ pipeline {
 
         }
     }
+    post {
+        always {
+            script {
+                if (params.SENDER == 'Hailey') {
+                    echo ':)'
+
+                } else {
+                    echo 'srry, only Hailey can send gifts...'
+                }
+            }
+        }
+    }
 }
