@@ -36,7 +36,7 @@ pipeline {
         }
             steps {
                 script{
-                    gv.BuildApp()
+                    gv.BuildGift()
                 }
 
                 echo "Grapping the gift in the ${Color} box "
@@ -53,7 +53,6 @@ pipeline {
                     gv.TestApp()
                     echo 'yeah, it seems like it can survive the trip'
                 }
-                echo 'testing the app'
             }
         }
         stage ("Deploy gift") {
