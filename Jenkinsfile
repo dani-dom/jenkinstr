@@ -53,7 +53,8 @@ pipeline {
 
                 }
                 echo 'deploying the app'
-                withCredentials([string(credentialsId: 'test-cred', variable: 'PW1')]) {
+                withCredentials([
+                    UsernamePassword(credentialsId: 'test-cred', usernameVariable: 'PW1', passwordVariable: 'PW2')]) {
                     echo "My password is '${PW1}'!"
     
 }
