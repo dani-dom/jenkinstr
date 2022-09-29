@@ -24,18 +24,7 @@ pipeline {
         stage ("deploy") {
             steps {
                 echo 'deploying the app'
-                withCredentials([
-                    usernamePassword(credentials: 'test-cred', usernameVariable: USER, passwordVariable: PWD)
-                ]){
-                    sh "some script ${USER} ${PWD}"
-                    echo "user ${USER}"
-                    
-                    
-                
-
-                }
                
-
             }
 
         }
