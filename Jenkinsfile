@@ -70,6 +70,12 @@ pipeline {
                 }
                 echo "The videogame ${Game} has been deployed to Daniel with the following note:"
                 echo "Note: ${Message}"
+                if (params.YES == True ) {
+                    echo 'and tysm for the cake :)'
+
+                } else {
+                    echo 'you could had added a cake, tho...'
+                }
                 
             }
 
