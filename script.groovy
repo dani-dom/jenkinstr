@@ -1,13 +1,13 @@
-def BuildApp() {
-    echo 'building the app ....'
+def BuildGift() {
+    echo 'Building the gift ....'
 }
 
 def TestApp() {
-    echo 'testing the app ....'
+    echo 'Dont know if its tough enough ....'
 }
 
 def DepApp() {
-    echo 'deploying the app ....'
+    echo 'Sending the gift by FEDEX ....'
 }
 
 return this 
