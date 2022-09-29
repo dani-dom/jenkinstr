@@ -11,8 +11,6 @@ pipeline {
     environment {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('test-cred')
-        max = 10
-        random_num = "${Math.abs(new Random().nextInt(max+1))}"
     }
 
     stages {
@@ -53,7 +51,6 @@ pipeline {
             steps {
                 script{
                     gv.TestApp()
-                    echo "From 1 to 10, the toughness is: ${env.random_num}"
                     echo 'yeah, it seems like it can survive the trip'
                 }
                 echo 'testing the app'
