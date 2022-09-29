@@ -1,4 +1,4 @@
-def groovy
+def gv
 pipeline {
     agent any 
     parameters {
@@ -13,7 +13,7 @@ pipeline {
         stage ("init") {
             steps {
                 script {
-                    groovy=load "script.groovy"
+                    gv=load "script.groovy"
                 }
             }
 
