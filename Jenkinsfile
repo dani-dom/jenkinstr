@@ -11,12 +11,13 @@ pipeline {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('test-cred')
     }
-    stages {
-        when {
+    when {
             expression {
                 params.SENDER == 'Hailey'
             }
         }
+    stages {
+        
         stage ("init") {
             steps {
                 script {
