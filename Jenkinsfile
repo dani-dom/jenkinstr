@@ -65,17 +65,18 @@ pipeline {
             steps {
                 script{
                     gv.DepApp()
-                    
-
-                }
-                echo "The videogame ${Game} has been deployed to Daniel with the following note:"
-                echo "Note: ${Message}"
-                if (params.YES) {
+                    echo "The videogame ${Game} has been deployed to Daniel with the following note:"
+                    echo "Note: ${Message}"
+                    if (params.YES) {
                     echo 'and tysm for the cake :)'
 
-                } else {
+                    } else {
                     echo 'you could had added a cake, tho...'
+                    }
+
                 }
+
+                
                 
             }
 
