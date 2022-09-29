@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(name: 'Game', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
         string(name: 'Message', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
-        string(name: 'Sender', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
+        string(name: 'SENDER', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
         booleanParam(name: 'YES', defaultValue: false, description: 'Would you like to include a tres leches cake?')
     }
     environment {
@@ -12,11 +12,11 @@ pipeline {
         SERVER_CREDENTIALS = credentials('test-cred')
     }
     stages {
-         when {
-                expression {
-                    params.SIGN == 'Hailey'
-                }
+        when {
+            expression {
+                params.SENDER == 'Hailey'
             }
+        }
         stage ("init") {
             steps {
                 script {
