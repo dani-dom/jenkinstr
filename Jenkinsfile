@@ -19,13 +19,15 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId: 'test-cred', usernameVariable: 'PW1', passwordVariable: 'PW2')]) {
                     echo "My password is ${PW1} and ${PW2}!"
+    
+}
             }
 
         }
         stage("Build") {
             when {
                 expression {
-                    params.SIGN == ${PW1}
+                    params.SIGN == 'Hailey'
                 }
             }
             steps {
@@ -61,7 +63,7 @@ pipeline {
 
                 }
                 echo 'deploying the app'
-}
+                
             }
 
         }
