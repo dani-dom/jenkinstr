@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    parameters {
+        string(name: 'VERSION', defaultValue: '', description: 'version to depploy')
+    }
     environment {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('test-cred')
@@ -24,7 +27,6 @@ pipeline {
         stage ("deploy") {
             steps {
                 echo 'deploying the app'
-               
             }
 
         }
