@@ -2,15 +2,21 @@ def gv
 pipeline {
     agent any 
     parameters {
-        choice(name: 'GAME', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
-        string(name: 'SIGN', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
-        booleanParam(name: 'CAKE', defaultValue: false, description: 'Would you like to include a tres leches cake?')
+        choice(name: 'Game', choices: ['Resident Evil', 'Until Down', 'Layers of Fear'], description: 'Which game would you like to gift to Daniel?')
+        string(name: 'Message', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
+        string(name: 'Sender', defaultValue: '', description: 'Include a brief cheer messaging for sending the gift:')
+        booleanParam(name: 'YES', defaultValue: false, description: 'Would you like to include a tres leches cake?')
     }
     environment {
         NEW_VERSION = '1.3.0'
         SERVER_CREDENTIALS = credentials('test-cred')
     }
     stages {
+         when {
+                expression {
+                    params.SIGN == 'Hailey'
+                }
+            }
         stage ("init") {
             steps {
                 script {
@@ -27,7 +33,7 @@ pipeline {
         stage("Build") {
             when {
                 expression {
-                    params.SIGN == 'PW1'
+                    params.SIGN == 'Hailey'
                 }
             }
             steps {
