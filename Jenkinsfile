@@ -1,4 +1,4 @@
-def gv
+def groovy
 pipeline {
     agent any 
     parameters {
@@ -13,7 +13,7 @@ pipeline {
         stage ("init") {
             steps {
                 script {
-                    gv=load "script.groovy"
+                    groovy=load "script.groovy"
                 }
             }
 
@@ -22,10 +22,14 @@ pipeline {
             steps {
                 script{
                     gv.BuildApp()
-
+                    echo $CI_COMMIT_SHORT_SHA
+                    npm install
+                    npm install -g gatsby-cli 
+                    gatsby build 
+                    sed -i "s" s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/" ./public/index.html
 
                 }
-                
+
                 echo "building version ${NEW_VERSION}"
             }
         }
